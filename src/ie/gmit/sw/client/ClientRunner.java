@@ -19,7 +19,9 @@ public class ClientRunner {
 		
 		// Instantiate a UserInterface object
 		UserInterface ui = new UserInterface();
-
+		
+		FileServerService fileServerService = new FileServerService(config);
+		
 		while (ui.isRunning()) {
 			// Print the menu and await user option
 			ui.printMenu();
@@ -28,8 +30,10 @@ public class ClientRunner {
 			// Act upon the option using a switch statement
 			switch (option) {
 				case 1:
+					fileServerService.connect();
 					break;
 				case 2:
+					fileServerService.listFiles();
 					break;
 				case 3:
 					break;

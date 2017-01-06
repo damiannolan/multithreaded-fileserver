@@ -20,10 +20,10 @@ public class ServerRunner {
 			return;
 		}
 	
-		System.out.println("Test - " + port + " " + filePath);
+		//System.out.println("Test - " + port + " " + filePath);
 		
 		//FileServer fs = new FileServer(port, filePath);
-		//new FileServer();
+		new FileServer(port, filePath);
 	} //end main()
 
 }
