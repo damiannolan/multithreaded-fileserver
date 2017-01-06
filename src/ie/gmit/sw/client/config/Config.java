@@ -1,13 +1,13 @@
 package ie.gmit.sw.client.config;
 
-public class Context {
+public class Config {
 	public static final String CONFIG_FILE = "config.xml";
 	private String username;
 	private String serverHost;
 	private int serverPort;
 	private String downloadDir;
 	
-	public Context() {
+	public Config() {
 		super();
 	}
 

@@ -5,11 +5,11 @@ import org.w3c.dom.*;
 
 public class XMLParser implements Parsator {
 	
-	private Context ctx;
+	private Config config;
 	
-	public XMLParser(Context ctx) {
+	public XMLParser(Config config) {
 		super();
-		this.ctx = ctx;
+		this.config = config;
 	}
 	
 	@Override
@@ -22,13 +22,13 @@ public class XMLParser implements Parsator {
 		 */
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();
-		Document doc = db.parse(Context.CONFIG_FILE);
+		Document doc = db.parse(Config.CONFIG_FILE);
 		
 		Element root = doc.getDocumentElement(); //Get the root of the node tree
 		NodeList children = root.getChildNodes(); //Get the child node of the root
 		
 		//Get the "username" from the root Element - <config-client>
-		ctx.setUsername(root.getAttribute("username"));
+		config.setUsername(root.getAttribute("username"));
 		
 		for(int i = 0; i < children.getLength(); i++) {  //Loop over the child nodes
 			Node next = children.item(i); //Get the next child
@@ -37,24 +37,24 @@ public class XMLParser implements Parsator {
 				Element e = (Element) next; //Cast the general node to an element node
 				
 				if (e.getNodeName().equals("server-host")) { //Check for element <server-host>
-					ctx.setServerHost(e.getFirstChild().getNodeValue());
+					config.setServerHost(e.getFirstChild().getNodeValue());
 					
 				} else if (e.getNodeName().equals("server-port")) { //Check for element <server-port>
-					ctx.setServerPort(Integer.parseInt(e.getFirstChild().getNodeValue()));
+					config.setServerPort(Integer.parseInt(e.getFirstChild().getNodeValue()));
 					
 				} else if (e.getNodeName().equals("download-dir")) { //Check for element <download-dir>
-					ctx.setDownloadDir(e.getFirstChild().getNodeValue());
+					config.setDownloadDir(e.getFirstChild().getNodeValue());
 				}
 			} //end if
 		} //end for
 	}
 
-	public Context getCtx() {
-		return ctx;
+	public Config getConfig() {
+		return config;
 	}
 
-	public void setCtx(Context ctx) {
-		this.ctx = ctx;
+	public void setConfig(Config config) {
+		this.config = config;
 	}
 
 }

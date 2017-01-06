@@ -12,10 +12,10 @@ public class Runner {
 		int option;
 		
 		// Parse the XML Configuration file
-		Context ctx = new Context();
-		XMLParser xp = new XMLParser(ctx);
+		Config config = new Config();
+		XMLParser xp = new XMLParser(config);
 		xp.parse();
-		System.out.println(ctx);
+		System.out.println(config);
 		
 		// Instantiate a UserInterface object
 		UserInterface ui = new UserInterface();
