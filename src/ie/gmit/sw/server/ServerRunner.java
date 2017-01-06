@@ -22,8 +22,8 @@ public class ServerRunner {
 	
 		System.out.println("Test - " + port + " " + filePath);
 		
-		//WebServer ws = new WebServer(port, filePath);
-		//new WebServer();
+		//FileServer fs = new FileServer(port, filePath);
+		//new FileServer();
 	} //end main()
 
 }

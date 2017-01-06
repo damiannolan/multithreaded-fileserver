@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import ie.gmit.sw.client.config.*;
 
-public class Runner {
+public class ClientRunner {
 
 	public static void main(String[] args) throws Throwable {
 		// Create a Scanner object and option variable for user interaction
