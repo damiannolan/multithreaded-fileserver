@@ -36,6 +36,7 @@ public class ClientRunner {
 					fileServerService.listFiles();
 					break;
 				case 3:
+					fileServerService.downloadFile();
 					break;
 				case 4:
 					ui.quit();

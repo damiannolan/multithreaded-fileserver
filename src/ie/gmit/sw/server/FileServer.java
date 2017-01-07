@@ -72,6 +72,8 @@ public class FileServer {
 	                //Set the file path of the directory with content to download
 	                if(request instanceof ListRequest) {
 	                	((ListRequest) request).setFilePath(filePath);
+	                } else if (request instanceof DownloadRequest) {
+	                	((DownloadRequest) request).setFilePath(filePath);
 	                }
 	                
 	                //Run the job on its own thread
