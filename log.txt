@@ -1,5 +1,5 @@
-[INFO] Connection requested by DamiansMACBOOK @ 127.0.0.1 at Sun Jan 08 17:36:10 GMT 2017
-[INFO] Listing requested by 127.0.0.1 at Sun Jan 08 17:36:15 GMT 2017
-[ERROR] Download requested by 127.0.0.1 at Sun Jan 08 17:36:17 GMT 2017
-[INFO] Download requested by 127.0.0.1 at Sun Jan 08 17:36:21 GMT 2017
+[INFO] Connection requested by DamiansMACBOOK @ 127.0.0.1 at Sun Jan 08 18:19:02 GMT 2017
+[INFO] Listing requested by 127.0.0.1 at Sun Jan 08 18:19:03 GMT 2017
+[ERROR] Download requested by 127.0.0.1 at Sun Jan 08 18:19:09 GMT 2017
+[INFO] Download requested by 127.0.0.1 at Sun Jan 08 18:19:18 GMT 2017
 Exiting...and closing log.txt

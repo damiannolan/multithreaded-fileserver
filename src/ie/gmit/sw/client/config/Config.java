@@ -45,7 +45,7 @@ public class Config {
 
 	@Override
 	public String toString() {
-		return "Context [username=" + username + ", serverHost=" + serverHost + ", serverPort=" + serverPort
+		return "Config = [username=" + username + ", serverHost=" + serverHost + ", serverPort=" + serverPort
 				+ ", downloadDir=" + downloadDir + "]";
 	}
 	
