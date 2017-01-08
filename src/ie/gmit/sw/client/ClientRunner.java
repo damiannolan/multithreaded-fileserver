@@ -1,16 +1,10 @@
 package ie.gmit.sw.client;
 
-import java.util.Scanner;
-
 import ie.gmit.sw.client.config.*;
 
 public class ClientRunner {
 
 	public static void main(String[] args) throws Throwable {
-		// Create a Scanner object and option variable for user interaction
-		Scanner console = new Scanner(System.in);
-		int option;
-		
 		// Parse the XML Configuration file
 		Config config = new Config();
 		XMLParser xp = new XMLParser(config);
@@ -19,13 +13,17 @@ public class ClientRunner {
 		
 		// Instantiate a UserInterface object
 		UserInterface ui = new UserInterface();
+		int option;
+		String fileName;
 		
+		//Instantiate a FileServerService object to handle server interaction
+		//Pass the config object as a parameter so that it knows its target
 		FileServerService fileServerService = new FileServerService(config);
 		
 		while (ui.isRunning()) {
 			// Print the menu and await user option
 			ui.printMenu();
-			option = console.nextInt();
+			option = ui.getOption();
 
 			// Act upon the option using a switch statement
 			switch (option) {
@@ -36,7 +34,8 @@ public class ClientRunner {
 					fileServerService.listFiles();
 					break;
 				case 3:
-					fileServerService.downloadFile();
+					fileName = ui.getFileName();
+					fileServerService.downloadFile(fileName);
 					break;
 				case 4:
 					ui.quit();
@@ -45,7 +44,7 @@ public class ClientRunner {
 			}
 		} // end while
 
-		console.close();
+		//console.close();
 	} // end main
 
 } // end Runner

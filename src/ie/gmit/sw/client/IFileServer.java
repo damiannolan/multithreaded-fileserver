@@ -6,8 +6,7 @@ public interface IFileServer {
 	
 	public void listFiles();
 	
-	//change this
-	public void downloadFile();
+	public void downloadFile(String fileName);
 	
 	public void quit();
 }

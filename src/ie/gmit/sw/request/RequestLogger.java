@@ -18,19 +18,27 @@ public class RequestLogger implements Runnable {
 	public void run() {
 		while(keepRunning) {
 			try {
+				//Take from the queue
 				Request r = q.take();
-				System.out.println(r.toString());
+				//Print to request to the terminal
+				System.out.println("\n" + r.toString());
+				//Write the request to the log file
 				fw.write(r.toString() + "\n");
 				
-				//fw.close();
-				
-				//new Thread(r);
+				//fw.close();				
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			
+		} //end while
+		
+		//Close the file
+		try {
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 

@@ -21,7 +21,7 @@ public class FileServer {
 	private static final int MAX_SIZE = 7;
 	
 	//Initialize a BlockingQueue with a max size
-	BlockingQueue<Request> q = new ArrayBlockingQueue<>(MAX_SIZE);
+	private BlockingQueue<Request> q = new ArrayBlockingQueue<>(MAX_SIZE);
 		
 	public FileServer(int portNumber, String filePath) {
 		try { //Try the following. If anything goes wrong, the error will be passed to the catch block
@@ -39,7 +39,7 @@ public class FileServer {
 			//This thread is the consumer
 			new Thread(new RequestLogger(q), "RequestLogger").start();
 			
-			System.out.println("Server started and listening on port " + portNumber);
+			System.out.println("Server started and listening on port " + this.portNumber);
 			
 		} catch (IOException e) {
 			System.out.println("Error..." + e.getMessage());
@@ -76,18 +76,19 @@ public class FileServer {
 	                	((DownloadRequest) request).setFilePath(filePath);
 	                }
 	                
-	                //Run the job on its own thread
+	                //Run the job on its own thread and then add it to the queue for logging
 	                request.setSocket(s);
+	                request.setQ(q);
 	                new Thread(request, "Request-" + counter).start();
 	                
 	                //Add the request to the queue for logging
-					q.put(request);
+					//q.put(request);
 										
 					//Spawn new thread to handle the request - i.e Log it & response
 					//new Thread(new RequestLogger(q), "RequestLogger").start();
 					
 					counter++; //Increment counter
-				} catch (Exception e) { //Something nasty happened. We should handle error gracefully, i.e. not like this...
+				} catch (Exception e) {
 					System.out.println("Error handling incoming request..." + e.getMessage());
 				}
 			} //end while

@@ -1,8 +1,9 @@
 package ie.gmit.sw.request;
 
 import java.io.Serializable;
+import java.net.Socket;
 import java.util.Date;
-import java.net.*;
+import java.util.concurrent.BlockingQueue;
 
 public abstract class Request implements Serializable, Runnable {
 	/**
@@ -14,6 +15,7 @@ public abstract class Request implements Serializable, Runnable {
 	private Date d;
 	private String clientIp;
 	private Socket socket;
+	private BlockingQueue<Request> q;
 	
 	private String host;
 	private int port;
@@ -48,6 +50,24 @@ public abstract class Request implements Serializable, Runnable {
 	public void setSocket(Socket socket) {
 		this.socket = socket;
 	}
+
+	public BlockingQueue<Request> getQ() {
+		return q;
+	}
+
+	public void setQ(BlockingQueue<Request> q) {
+		this.q = q;
+	}
+	
+	public void addToQueue(Request r) {
+		try {
+			this.q.put(r);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	/*Maybe delete these under*/
 
 	public String getHost() {
 		return host;
