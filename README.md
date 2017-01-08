@@ -9,7 +9,7 @@ The client application features functionality such as:
 - Parsing of XML configuration file
 - Connecting to the server
 - Printing a list of files in a resources directory
-- Downloading a file from the resources directory to the downloads directory
+- Downloading a file from the resources directory to the downloads directory (eg: text files, images, mp3s)
 - Exiting the server application and saving the logs to a text file
 
 When the client application is launched it parses the XML file - config.xml to extract from it a set of values required to interact with the remote server. This is done using the Document Object Model (DOM).
@@ -31,6 +31,8 @@ A `Listener` runs on a separate thread and intercepts client requests and farms 
 
 ## Usage
 
+There must be a directory named `downloads` in the same directory as the .jar file.
+
 1. Start the server in your terminal specifying the port number and resources directory
 
 		java -cp oop.jar ie.gmit.sw.server.ServerRunner 7777 myfiles
@@ -46,3 +48,10 @@ A `Listener` runs on a separate thread and intercepts client requests and farms 
 
 ###Client
 ![Imgur](http://i.imgur.com/1wFfGA4.png)
+
+##Improvements
+
+This section contains notes/ideas for future improvements to the application.
+
+- Have the application create the downloads directory if it doesn't exist.
+- Implement the ability for the application to open files in their default application
