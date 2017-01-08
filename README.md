@@ -42,7 +42,7 @@ A `Listener` runs on a separate thread and intercepts client requests and farms 
 ##Screenshots
 
 ###Server
-![server](http://imgur.com/sKM1XLI)
+[Imgur](http://i.imgur.com/sKM1XLI.png)
 
 ###Client
-![client](http://imgur.com/1wFfGA4)
+[Imgur](http://i.imgur.com/1wFfGA4.png)
