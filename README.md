@@ -38,3 +38,11 @@ A `Listener` runs on a separate thread and intercepts client requests and farms 
 2. Start the client app in your terminal
 
 		java -cp oop.jar ie.gmit.sw.client.ClientRunner
+		
+##Screenshots
+
+###Server
+![server](http://imgur.com/sKM1XLI)
+
+###Client
+![client](http://imgur.com/1wFfGA4)
