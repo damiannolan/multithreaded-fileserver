@@ -1,4 +1,4 @@
-# A Multithreaded Fileserver - Client Application
+# A Multithreaded Fileserver & Client Application
 
 ##Overview
 
