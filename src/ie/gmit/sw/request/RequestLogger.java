@@ -20,6 +20,10 @@ public class RequestLogger implements Runnable {
 			try {
 				//Take from the queue
 				Request r = q.take();
+				
+				if(r instanceof PoisonRequest) {
+					keepRunning = false;
+				}
 				//Print to request to the terminal
 				System.out.println("\n" + r.toString());
 				//Write the request to the log file
@@ -35,6 +39,10 @@ public class RequestLogger implements Runnable {
 		} //end while
 		
 		//Close the file
+		this.closeFile(fw);
+	}
+	
+	public void closeFile(FileWriter fw) {
 		try {
 			fw.close();
 		} catch (IOException e) {

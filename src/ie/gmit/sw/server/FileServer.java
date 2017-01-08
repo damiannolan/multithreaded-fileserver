@@ -48,7 +48,8 @@ public class FileServer {
 	
 	/* The inner class Listener is a Runnable, i.e. a job that can be given to a Thread. The job that
 	 * the class has been given is to intercept incoming client requests and farm them out to other
-	 * threads. Each client request is in the form of a socket and will be handled by a separate new thread.
+	 * threads. Each client request is in the form of a socket and will be handled by a separate new thread
+	 * and added to the Blocking Queue for logging to a text file - log.txt
 	 */
 	private class Listener implements Runnable{ //A Listener IS-A Runnable
 		
@@ -56,8 +57,8 @@ public class FileServer {
 		public void run() {
 			int counter = 0; //A counter to track the number of requests
 			
-			while (keepRunning){ //Loop will keepRunning is true. Note that keepRunning is "volatile"
-				try { //Try the following. If anything goes wrong, the error will be passed to the catch block
+			while (keepRunning) {
+				try {
 					
 					Socket s = ss.accept(); //This is a blocking method, causing this thread to stop and wait here for an incoming request
 					
@@ -81,12 +82,10 @@ public class FileServer {
 	                request.setQ(q);
 	                new Thread(request, "Request-" + counter).start();
 	                
-	                //Add the request to the queue for logging
-					//q.put(request);
-										
-					//Spawn new thread to handle the request - i.e Log it & response
-					//new Thread(new RequestLogger(q), "RequestLogger").start();
-					
+	                if(request instanceof PoisonRequest) { //Kill the loop
+	                	keepRunning = false;
+	                }
+	                
 					counter++; //Increment counter
 				} catch (Exception e) {
 					System.out.println("Error handling incoming request..." + e.getMessage());

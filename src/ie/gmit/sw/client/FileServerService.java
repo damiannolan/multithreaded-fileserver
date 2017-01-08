@@ -1,5 +1,10 @@
 package ie.gmit.sw.client;
 
+/*
+ * This class provides the application with an object pretending to the remote server on the client side - (proxy)
+ * It is used for sending requests and receiving responses from the remote via Sockets
+ */
+
 import java.io.*;
 import java.net.Socket;
 
@@ -131,9 +136,26 @@ public class FileServerService implements IFileServer {
 	} //end downloadFile()
 
 	@Override
-	public void quit() {
-		// TODO Auto-generated method stub
-		
+	public void quit() {	
+		try {
+			s = new Socket(host, port);
+			clientIp = s.getLocalAddress().getHostAddress();
+			
+			//Serialise / marshal a request to the server
+	        ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
+			out.writeObject(new PoisonRequest(clientIp));
+	        out.flush();
+	        
+	        Thread.yield(); //Pause the current thread for a short time
+	        
+	        //Response
+	        ObjectInputStream in = new ObjectInputStream(s.getInputStream());
+	        String response = (String) in.readObject();
+	        
+	        System.out.println(response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	} //end quit()
 
 }

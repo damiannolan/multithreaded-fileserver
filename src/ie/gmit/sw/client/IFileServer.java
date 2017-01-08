@@ -1,5 +1,7 @@
 package ie.gmit.sw.client;
 
+/*An interface defining the behavior associated with the file server*/
+
 public interface IFileServer {
 	
 	public void connect();

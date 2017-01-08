@@ -38,6 +38,7 @@ public class ClientRunner {
 					fileServerService.downloadFile(fileName);
 					break;
 				case 4:
+					fileServerService.quit();
 					ui.quit();
 					break;
 				default:
